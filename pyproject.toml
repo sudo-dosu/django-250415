@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=60.0"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "host_mgr"
+version = "1.0.0"
+
+[[authors]]
+name = "sleeping-in-bed"
+email = "nyanyanyaworld@gmail.com"
+
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "django",
+    "djangorestframework",
+    "celery",
+    "redis",
+    "django-celery-beat"
+]
+
+[project.scripts]
+
+[project.optional-dependencies]
+prod = []
+dev = [
+    "build",
+    "twine",
+    "tox",
+    "pytest",
+    "coverage",
+    "sphinx",
+    "ruff",
+    "mypy",
+    "python-dotenv",
+    "jinja2",
+    "rtoml"
+]
+
+[tool.setuptools]
+packages = ["host_mgr"]
+include-package-data = true

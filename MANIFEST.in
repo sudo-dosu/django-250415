@@ -1,0 +1,3 @@
+recursive-include host_mgr *
+recursive-exclude **/__pycache__ *
+recursive-exclude tests *

@@ -1,0 +1,25 @@
+__pycache__/
+/scripts
+/Dockerfile
+/compose.yml
+.env
+/containerdata
+# tmp dir
+/tmp
+/test/tmp
+# build
+dist/
+*.egg-info/
+# coverage
+.coverage
+htmlcov/
+# tox
+.tox/
+# sphinx
+docs/_build/
+# JetBrains
+.idea/
+# vscode
+.vscode/
+# macOS
+.DS_Store

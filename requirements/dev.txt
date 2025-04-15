@@ -1,0 +1,12 @@
+-r base.txt
+build
+twine
+tox
+pytest
+coverage
+sphinx
+ruff
+mypy
+python-dotenv
+jinja2
+rtoml
