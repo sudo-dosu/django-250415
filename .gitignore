@@ -4,6 +4,7 @@ __pycache__/
 /compose.yml
 .env
 /containerdata
+/db.sqlite3
 # tmp dir
 /tmp
 /test/tmp
