@@ -5,6 +5,7 @@ __pycache__/
 .env
 /containerdata
 /db.sqlite3
+/celerybeat-schedule
 # tmp dir
 /tmp
 /test/tmp
