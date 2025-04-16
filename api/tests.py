@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
-from django.urls import reverse
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 from .models import City, IDC, Host, HostStat, HostPasswordHistory
 from unittest.mock import patch
 
@@ -7,6 +8,11 @@ from unittest.mock import patch
 class HostMgrTestCase(TestCase):
     def setUp(self):
         self.client = Client()
+
+        self.user = User.objects.create_user(username="testuser", password="123456")
+        self.token = Token.objects.create(user=self.user)
+        self.client.defaults['HTTP_AUTHORIZATION'] = f"Token {self.token.key}"
+
         self.city = City.objects.create(name="Shanghai")
         self.idc = IDC.objects.create(name="IDC-A", city=self.city)
         self.host = Host.objects.create(
@@ -43,7 +49,10 @@ class HostMgrTestCase(TestCase):
         self.host.refresh_from_db()
         self.assertNotEqual(self.host.root_password, "oldpassword")
         self.assertEqual(HostPasswordHistory.objects.filter(host=self.host).count(), 1)
-        self.assertEqual(HostPasswordHistory.objects.filter(host=self.host)[0].root_password, "oldpassword")
+        self.assertEqual(
+            HostPasswordHistory.objects.filter(host=self.host)[0].root_password,
+            "oldpassword"
+        )
 
     def test_daily_host_stats(self):
         from .tasks import daily_host_stats
